@@ -18,13 +18,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Column( //coluna diz que cada container vai estar em baixo do outro
-      mainAxisAlignment: MainAxisAlignment.center,//eixo principal de alinhamento
-      crossAxisAlignment: CrossAxisAlignment.start,
+      home: Row( //row é linha, horizontal
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start, //para ir para o ínicio
         children: [
-          Container(color: Colors.red, width: 100, height: 100,),//altura e largura
+           Container(color: Colors.red, width: 100, height: 100,),//altura e largura
           Container(color: Colors.blue, width: 50, height: 50,),
-      ],), //local principal aonde estará o nosso widget/objeto, pilha
+        ],
+      ), //local principal aonde estará o nosso widget/objeto, pilha
     );
   }
 }
