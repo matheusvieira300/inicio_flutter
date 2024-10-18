@@ -23,15 +23,19 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Tarefas"),
         ), //topo
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: ListView(
+          //permite scrollar a tela
           children: [
             Task("Aprender Flutter"), //chamando o widget
             Task("Andar de Bike"),
             Task("Meditar"),
+            Task("Meditar"),
+            Task("Meditar"),
+            Task("Meditar"),
           ],
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {}), //função anônima
+        floatingActionButton:
+            FloatingActionButton(onPressed: () {}), //função anônima
       ),
     );
   }
@@ -44,32 +48,44 @@ class Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
-          Container(
-            color: Colors.blue,
-            height: 140,
-          ),
-          Container(
-            color: Colors.white,
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  color: Colors.black26,
-                  width: 72,
-                  height: 100,
-                ),
-                Text(nome),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Icon(Icons.arrow_drop_up)) // Ícones
-              ],
+    return Padding(
+      // Ctrl + . para fazer wrap
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: Stack(
+          children: [
+            Container(
+              color: Colors.blue,
+              height: 140,
             ),
-          )
-        ],
+            Container(
+              color: Colors.white,
+              height: 100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    color: Colors.black26,
+                    width: 72,
+                    height: 100,
+                  ),
+                  Container(
+                      width: 200, //dentro de um container para não dar overflow
+                      child: Text(
+                        nome,
+                        style: TextStyle(
+                          fontSize: 24,
+                          overflow: TextOverflow.ellipsis, //coloca três pontinhos quando o texto é muito grande
+                        ),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: Icon(Icons.arrow_drop_up)) // Ícones
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     ); //corpo;
   }
