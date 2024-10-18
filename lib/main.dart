@@ -42,12 +42,13 @@ class MyApp extends StatelessWidget {
 }
 
 // stateless widget, widget é tipo um método
-class Task extends StatelessWidget {
+class Task extends StatelessWidget { //ele é estático
   final String nome;
   const Task(this.nome, {super.key}); //construtor
 
   @override
   Widget build(BuildContext context) {
+    int nivel = 0;
     return Padding(
       // Ctrl + . para fazer wrap
       padding: const EdgeInsets.all(8.0),
@@ -69,21 +70,34 @@ class Task extends StatelessWidget {
                     width: 72,
                     height: 100,
                   ),
-                  Container(
-                      width: 200, //dentro de um container para não dar overflow
-                      child: Text(
-                        nome,
-                        style: TextStyle(
-                          fontSize: 24,
-                          overflow: TextOverflow.ellipsis, //coloca três pontinhos quando o texto é muito grande
-                        ),
-                      )),
+                  Column(
+                    children: [
+                      Container(
+                          width:
+                              200, //dentro de um container para não dar overflow
+                          child: Text(
+                            nome,
+                            style: TextStyle(
+                              fontSize: 24,
+                              overflow: TextOverflow
+                                  .ellipsis, //coloca três pontinhos quando o texto é muito grande
+                            ),
+                          )),
+                      Text(
+                        "Nível: $nivel",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ), // chamando a váriavel nivel
+                    ],
+                  ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        nivel++;
+                        print(nivel);
+                      },
                       child: Icon(Icons.arrow_drop_up)) // Ícones
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
