@@ -22,14 +22,15 @@ class MyApp extends StatelessWidget {
           //Container sendo um objeto pai para poder mudar a cor de tudo
           color: Colors.white,
           child: Column(
-            mainAxisAlignment:
+            mainAxisAlignment: // eixo principal do widget
                 MainAxisAlignment.spaceEvenly, //espaço equilibrado
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center, // cross horizontal
             children: [
               Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
-                  Container(
+                  Container(// no container não há o risco de ocorrer o erro 
+//overflowed porque o container só ocupa o espaço do widget não podendo ser infinito
                     color: Colors.red,
                     width: 100,
                     height: 100,
@@ -82,7 +83,7 @@ class MyApp extends StatelessWidget {
                 color: Colors.amber,
                 height: 30,
                 width: 300,
-                child: Text(
+                child: const Text(
                   'Diamante Amarelo',
                   style: TextStyle(
                     //estilo do texto
@@ -96,7 +97,7 @@ class MyApp extends StatelessWidget {
                 onPressed: () {
                   print('Você apertou o Botão');
                 },
-                child: Text('Aperte o Botão!'),
+                child: const Text('Aperte o Botão!'),
               ), // botão, mais função anonima
             ],
           ),
