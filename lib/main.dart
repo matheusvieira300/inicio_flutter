@@ -41,14 +41,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// stateless widget, widget é tipo um método
-class Task extends StatelessWidget { //ele é estático
+// statefull ele é dinâmico
+class Task extends StatefulWidget {
   final String nome;
-  const Task(this.nome, {super.key}); //construtor
+
+  const Task(this.nome, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+ 
     int nivel = 0;
+
+ //construtor
+  @override
+  Widget build(BuildContext context) { //na função build tudo é reescrito
     return Padding(
       // Ctrl + . para fazer wrap
       padding: const EdgeInsets.all(8.0),
@@ -76,7 +85,7 @@ class Task extends StatelessWidget { //ele é estático
                           width:
                               200, //dentro de um container para não dar overflow
                           child: Text(
-                            nome,
+                            widget.nome,
                             style: TextStyle(
                               fontSize: 24,
                               overflow: TextOverflow
@@ -91,7 +100,9 @@ class Task extends StatelessWidget { //ele é estático
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        nivel++;
+                        setState(() {
+                          nivel++;
+                        });
                         print(nivel);
                       },
                       child: Icon(Icons.arrow_drop_up)) // Ícones
