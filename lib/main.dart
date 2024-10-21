@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:obpc_front/initial_screen.dart';
+import 'package:obpc_front/screens/initial_screen.dart';
 
 void main() {
   //todo esse código é em Dart
-  runApp(MyApp()); //tudo dentro dela vai rodar no nosso aplicativo
+  runApp(const MyApp()); //tudo dentro dela vai rodar no nosso aplicativo
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   //classe e extends, Widget é a base do Flutter,
 //Existem diversos widgets diferentes no Flutter
-  MyApp({super.key});
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+  const MyApp({super.key});
   //construtor
   @override //build facilita a atualização da tela
   Widget build(BuildContext context) {
@@ -25,7 +20,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: InitialScreen(),
+      home: const InitialScreen(), //const acelera o processamento do dart
     );
   }
 }
