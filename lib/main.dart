@@ -80,25 +80,39 @@ class _TaskState extends State<Task> {
         child: Stack(
           children: [
             Container(
-              color: Colors.blue,
+              // color: Colors.blue, o box decoration já tem cor
+              decoration: BoxDecoration(
+                //widget para borda
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.blue,
+              ),
               height: 140,
             ),
             Column(
               children: [
                 Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Colors.white,
+                  ),
                   height: 100,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        color: Colors.black26,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: Colors.black26,
+                        ),
                         width: 72,
                         height: 100,
-                        child: Image.network(
-                          widget.foto,
-                          fit: BoxFit
-                              .cover, // para aumentar a imagem para o tamanho do container
+                        child: ClipRRect( //para usar a borda na imagem
+                          borderRadius: BorderRadius.circular(4),
+                          child: Image.network(
+                            widget.foto,
+                            fit: BoxFit
+                                .cover, // para aumentar a imagem para o tamanho do container
+                          ),
                         ),
                       ),
                       Column(
@@ -204,8 +218,10 @@ class _TaskState extends State<Task> {
                         //container para diminuir o tamanho
                         child: LinearProgressIndicator(
                           color: Colors.white,
-                          value: (widget.dificuldade > 0) //se dificuldade maior que zero
-                              ? (nivel / widget.dificuldade) / 10 // se for verdadeiro
+                          value: (widget.dificuldade >
+                                  0) //se dificuldade maior que zero
+                              ? (nivel / widget.dificuldade) /
+                                  10 // se for verdadeiro
                               : 1, // 1 a barra fica completa, se não for verdadeiro
                         ),
                       ),
