@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 
 void main() {
   //todo esse código é em Dart
-  runApp(const MyApp()); //tudo dentro dela vai rodar no nosso aplicativo
+  runApp(MyApp()); //tudo dentro dela vai rodar no nosso aplicativo
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   //classe e extends, Widget é a base do Flutter,
 //Existem diversos widgets diferentes no Flutter
-  const MyApp({super.key}); //construtor
+  MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  //construtor
+  bool opacidade = true;
 
   @override //build facilita a atualização da tela
   Widget build(BuildContext context) {
@@ -24,31 +31,43 @@ class MyApp extends StatelessWidget {
           leading: Container(), //leading espaçamento no appbar
           title: const Text("Tarefas"),
         ), //topo
-        body: ListView(
-          //permite scrollar a tela
-          children: [
-            Task(
-                'Aprender Flutter',
-                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                3), //chamando o widget
-            Task(
-                'Andar de Bike',
-                'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                2),
-            Task(
-                'Meditar',
-                'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg',
-                5),
-            Task(
-                'Ler',
-                'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg',
-                4),
-            Task('Jogar',
-                'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg', 1),
-          ],
+        body: AnimatedOpacity(
+          opacity: opacidade ? 1 : 0, //pra ser visível, se sim 1 senão 0
+          duration: Duration(
+            milliseconds: 800,
+          ),
+          child: ListView(
+            //permite scrollar a tela
+            children: [
+              Task(
+                  'Aprender Flutter',
+                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                  3), //chamando o widget
+              Task(
+                  'Andar de Bike',
+                  'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                  2),
+              Task(
+                  'Meditar',
+                  'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg',
+                  5),
+              Task(
+                  'Ler',
+                  'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg',
+                  4),
+              Task('Jogar',
+                  'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg', 1),
+            ],
+          ),
         ),
-        floatingActionButton:
-            FloatingActionButton(onPressed: () {}), //função anônima
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              opacidade = !opacidade; //contrário 0
+            });
+          },
+          child: Icon(Icons.remove_red_eye),
+        ), //função anônima
       ),
     );
   }
@@ -106,7 +125,8 @@ class _TaskState extends State<Task> {
                         ),
                         width: 72,
                         height: 100,
-                        child: ClipRRect( //para usar a borda na imagem
+                        child: ClipRRect(
+                          //para usar a borda na imagem
                           borderRadius: BorderRadius.circular(4),
                           child: Image.network(
                             widget.foto,
