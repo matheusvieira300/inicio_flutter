@@ -121,27 +121,38 @@ class _TaskState extends State<Task> {
                               Icon(
                                 Icons.star,
                                 size: 15,
-                                color: Colors.blue,
+                                color: (widget.dificuldade >= 1)
+                                    ? Colors.blue
+                                    : Colors.blue[
+                                        100], //operador ternario de if else
                               ),
                               Icon(
                                 Icons.star,
                                 size: 15,
-                                color: Colors.blue,
+                                color: (widget.dificuldade >= 2)
+                                    ? Colors.blue
+                                    : Colors.blue[100],
                               ),
                               Icon(
                                 Icons.star,
                                 size: 15,
-                                color: Colors.blue,
+                                color: (widget.dificuldade >= 3)
+                                    ? Colors.blue
+                                    : Colors.blue[100],
                               ),
                               Icon(
                                 Icons.star,
                                 size: 15,
-                                color: Colors.blue[100],
+                                color: (widget.dificuldade >= 4)
+                                    ? Colors.blue
+                                    : Colors.blue[100],
                               ),
                               Icon(
                                 Icons.star,
                                 size: 15,
-                                color: Colors.blue[100],
+                                color: (widget.dificuldade >= 5)
+                                    ? Colors.blue
+                                    : Colors.blue[100],
                               ),
                             ],
                           ),
@@ -193,7 +204,9 @@ class _TaskState extends State<Task> {
                         //container para diminuir o tamanho
                         child: LinearProgressIndicator(
                           color: Colors.white,
-                          value: nivel / 10, // 1 a barra fica completa
+                          value: (widget.dificuldade > 0) //se dificuldade maior que zero
+                              ? (nivel / widget.dificuldade) / 10 // se for verdadeiro
+                              : 1, // 1 a barra fica completa, se não for verdadeiro
                         ),
                       ),
                     ),
