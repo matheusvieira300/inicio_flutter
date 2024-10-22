@@ -139,12 +139,16 @@ class _FormScreenState extends State<FormScreen> {
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          print(nameController.text); //para pegar o texto digitado
+                          print(nameController
+                              .text); //para pegar o texto digitado
                           print(int.parse(difficultyController.text)); //parse
                           print(imageController.text);
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text(
+                                  "Printando nova Tarefa!"))); // verificando na tela para printar algo ao usuário
                         }
                       },
-                      child: Text('Adicionar!'))
+                      child: const Text('Adicionar!'))
                 ],
               ),
             ),
