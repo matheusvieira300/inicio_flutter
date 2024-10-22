@@ -8,6 +8,10 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController difficultyController = TextEditingController();
+  TextEditingController imageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +33,7 @@ class _FormScreenState extends State<FormScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   // campo de texto
+                  controller: nameController,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(), //borda no textfield
@@ -38,6 +43,41 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  // campo de texto
+                  controller: difficultyController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(), //borda no textfield
+                    hintText: 'Dificuldade',
+                    fillColor: Colors.white70,
+                    filled: true,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  // campo de texto
+                  controller: imageController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(), //borda no textfield
+                    hintText: 'Imagem',
+                    fillColor: Colors.white70,
+                    filled: true,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    print(nameController.text); //para pegar o texto digitado
+                    print(int.parse(difficultyController.text));//parse
+                    print(imageController.text);
+                  },
+                  child: Text('Adicionar!'))
             ],
           ),
         ),
