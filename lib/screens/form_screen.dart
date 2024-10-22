@@ -145,7 +145,8 @@ class _FormScreenState extends State<FormScreen> {
                           print(imageController.text);
                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text(
-                                  "Printando nova Tarefa!"))); // verificando na tela para printar algo ao usuário
+                                  "Printando nova Tarefa!"))); // aparece quando todas as validações dão certo
+                          Navigator.pop(context); //voltar para o ínicio, volta a stack
                         }
                       },
                       child: const Text('Adicionar!'))
