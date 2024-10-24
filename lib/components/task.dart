@@ -16,6 +16,14 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   int nivel = 0;
 
+  //método para verificar se a informação é da net
+  bool assetOrNetwork() {
+    if (widget.foto.contains("http")) {
+      return false;
+    }
+    return true;
+  }
+
   //construtor
   @override
   Widget build(BuildContext context) {
@@ -55,11 +63,17 @@ class _TaskState extends State<Task> {
                       child: ClipRRect(
                         //para usar a borda na imagem
                         borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          widget.foto,
-                          fit: BoxFit
-                              .cover, // para aumentar a imagem para o tamanho do container
-                        ),
+                        child: assetOrNetwork()
+                            ? Image.asset(
+                                //se for true
+                                widget.foto,
+                                fit: BoxFit
+                                    .cover, // para aumentar a imagem para o tamanho do container
+                              )
+                            : Image.network(
+                                widget.foto,
+                                fit: BoxFit.cover,
+                              ), //se for false
                       ),
                     ),
                     Column(
@@ -77,7 +91,9 @@ class _TaskState extends State<Task> {
                                     .ellipsis, //coloca três pontinhos quando o texto é muito grande
                               ),
                             )),
-                        Difficulty(difficultyLevel: widget.dificuldade), //recebendo o widget
+                        Difficulty(
+                            difficultyLevel:
+                                widget.dificuldade), //recebendo o widget
                       ],
                     ),
                     SizedBox(
@@ -92,8 +108,7 @@ class _TaskState extends State<Task> {
                         },
                         style: ElevatedButton.styleFrom(
                           shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5)),
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
                           ),
                           padding: EdgeInsets.zero,
                         ),
@@ -138,8 +153,7 @@ class _TaskState extends State<Task> {
                     padding: const EdgeInsets.all(12),
                     child: Text(
                       "Nível: $nivel",
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 16),
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ],

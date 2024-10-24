@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:obpc_front/components/task.dart';
 
 class TaskInherited extends InheritedWidget {
-  const TaskInherited({
+   TaskInherited({
     super.key,
     required super.child,
   });
 
-  final List<Task> taskList = const [ 
-          Task('Aprender Flutter', 'assets/images/dash.png', 3), //chamando o widget
-          Task('Andar de Bike', 'assets/images/bike.webp', 2),
-          Task('Meditar', 'assets/images/meditar.jpeg', 5),
-          Task('Ler', 'assets/images/livro.jpg', 4),
-          Task('Jogar', 'assets/images/jogar.jpg', 1),]; //lista dinâmica
+  final List<Task> taskList = [ 
+          const Task('Aprender Flutter', 'assets/images/dash.png', 3), //chamando o widget
+          const Task('Andar de Bike', 'assets/images/bike.webp', 2),
+          const Task('Meditar', 'assets/images/meditar.jpeg', 5),
+          const Task('Ler', 'assets/images/livro.jpg', 4),
+          const Task('Jogar', 'assets/images/jogar.jpg', 1),]; //lista dinâmica
 
     void newTask(String name, String photo, int difficulty){
       taskList.add(Task(name, photo, difficulty));
