@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:obpc_front/data/task_inherited.dart';
 import 'package:obpc_front/screens/initial_screen.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const InitialScreen(), //const acelera o processamento do dart
+      home: const TaskInherited(child: InitialScreen()),
     );
   }
 }

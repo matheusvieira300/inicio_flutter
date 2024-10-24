@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:obpc_front/data/task_inherited.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
+  const FormScreen({super.key, required this.taskContext});
+
+  final BuildContext taskContext;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -139,14 +142,20 @@ class _FormScreenState extends State<FormScreen> {
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          print(nameController
-                              .text); //para pegar o texto digitado
-                          print(int.parse(difficultyController.text)); //parse
-                          print(imageController.text);
+                          // print(nameController
+                          //     .text); //para pegar o texto digitado
+                          // print(int.parse(difficultyController.text)); //parse
+                          // print(imageController.text);
+                          TaskInherited.of(widget.taskContext).newTask(
+                              nameController.text,
+                              imageController.text,
+                              int.parse(difficultyController.text));
+                          //pegando o contexto trazido do formulário
                           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text(
-                                  "Printando nova Tarefa!"))); // aparece quando todas as validações dão certo
-                          Navigator.pop(context); //voltar para o ínicio, volta a stack
+                                  "Criando uma nova Tarefa!"))); // aparece quando todas as validações dão certo
+                          Navigator.pop(
+                              context); //voltar para o ínicio, volta a stack
                         }
                       },
                       child: const Text('Adicionar!'))
