@@ -35,7 +35,7 @@ class TaskDao {
   }
 
   //conversão de tarefa para um map de tarefas
-  Map<String,dynamic> toMap(Task tarefa){
+  Map<String, dynamic> toMap(Task tarefa) {
     print("Convertendo Tarefa em Map: ");
     final Map<String, dynamic> mapDeTarefas = Map();
     mapDeTarefas[_name] = tarefa.nome;
@@ -82,5 +82,13 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String nomeDaTarefa) async {}
+  delete(String nomeDaTarefa) async {
+    print("Deletando Tarefa: $nomeDaTarefa");
+    final Database bancoDeDados = await getDatabase();
+    return bancoDeDados.delete(
+      _tablename,
+      where: "$_name = ?",
+      whereArgs: [nomeDaTarefa],
+    );
+  }
 }
